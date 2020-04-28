@@ -9,7 +9,7 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <ul id="message"></ul>
+    <ul id="messages"></ul>
     <form id="message_form" action="#">
       <input id="input_msg" autocomplete="off" /><button>Send</button>
     </form>
@@ -20,6 +20,9 @@
           socketio.emit("message", $("#input_msg").val());
           $("#input_msg").val("");
           return false;
+        });
+        socketio.on("message", function(msg){
+          $("#messages").append($("<li>").text(msg));
         });
       });
     </script>
