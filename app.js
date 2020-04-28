@@ -13,10 +13,10 @@ var app = express();
 // var http = require("http").Server(app);
 // const PORT = process.env.PORT || 7000;
 var http = require("http");
-http.createServer(app).listen(process.env.PORT)
+var server = http.createServer(app).listen(process.env.PORT)
 
 // io
-const io = require("socket.io")(http);
+const io = require("socket.io")(server);
 io.on("connection", function(socket){
     socket.on("message", function(msg){
         console.log("message: " + msg);
