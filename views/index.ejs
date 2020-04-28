@@ -22,7 +22,7 @@
           return false;
         });
         socketio.on("message", function(msg){
-          $("#messages").append($("<li>").text(msg | getRandomInt(0, 100)));
+          $("#messages").append($("<li>").text(msg + " : " +  toString(getRandomInt(0, 100))));
         });
       });
     </script>
