@@ -22,9 +22,17 @@
           return false;
         });
         socketio.on("message", function(msg){
-          $("#messages").append($("<li>").text(msg));
+          $("#messages").append($("<li>").text(msg | getRandomInt(0, 100)));
         });
       });
+    </script>
+    <script>
+      // private function
+      var getRandomInt = function(min, max) {
+          min = Math.ceil(min);
+          max = Math.floor(max);
+          return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
+        }
     </script>
   </body>
 </html>

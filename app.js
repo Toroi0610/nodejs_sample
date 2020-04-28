@@ -10,8 +10,8 @@ var users = require('./routes/users');
 
 var app = express();
 
-// var http = require("http").Server(app);
-// const PORT = process.env.PORT || 7000;
+var http = require("http").Server(app);
+const PORT = process.env.PORT || 7000;
 var http = require("http");
 var server = http.createServer(app).listen(process.env.PORT)
 
