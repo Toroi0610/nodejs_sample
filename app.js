@@ -10,8 +10,10 @@ var users = require('./routes/users');
 
 var app = express();
 
-var http = require("http").Server(app);
-const PORT = process.env.PORT || 7000;
+// var http = require("http").Server(app);
+// const PORT = process.env.PORT || 7000;
+var http = require("http");
+http.createServer(app).listen(process.env.PORT)
 
 // io
 const io = require("socket.io")(http);
@@ -23,9 +25,9 @@ io.on("connection", function(socket){
 });
 
 // output console
-http.listen(PORT, function(){
-    console.log('server listening. Port:' + PORT);
-});
+// http.listen(PORT, function(){
+//     console.log('server listening. Port:' + PORT);
+// });
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
