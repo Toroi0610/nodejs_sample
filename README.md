@@ -5,6 +5,7 @@
 ## UX
 ### 1. Roomの作成 
 (1) Room ID, Passwordの生成
+
 (2) IDとPasswordで入れる．
 
 ### 2. Userの作成
