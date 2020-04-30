@@ -10,17 +10,51 @@ var users = require('./routes/users');
 
 var app = express();
 
-// var http = require("http").Server(app);
-// const PORT = process.env.PORT || 7000;
-var http = require("http");
-var server = http.createServer(app).listen(process.env.PORT)
+// command option 
+var program = require("commander");
+
+program
+    .option("-f, --flag", "On/Off flag.")
+    .option("-m, --message <s>", "Show message.", "Hello World.")
+    .option("-i, --integer <n>", "Numeric value.", parseInt, 10)
+    .option("-l, --list <items>", "Listed value.", (value) => { return (value || []).split(","); }, [])
+    .option("-s, --size <size>", "Selected size.", /^(large|medium|small)$/i, "medium")
+    .option("-o, --option [value]", "Option value.")
+    .option("-v, --variadic [items...]", "Variadic value.")
+    .parse(process.argv);
+
+if (process.argv.length < 3) {
+    program.help();
+}
+
+for (let i = 0; i < process.argv.length; i++) {
+    console.log(`argv[${i}] = ${process.argv[i]}`);
+}
+
+var run_mode = process.argv[3]
+
+if (run_mode == "local"){
+    var http = require("http").Server(app);
+    const PORT = process.env.PORT || 7000;
+    var server = http.listen(PORT);
+    console.log("Server: Local");
+} else {
+    var http = require("http");
+    var server = http.createServer(app).listen(process.env.PORT)
+    // console.log("Server: Cloud);
+}
 
 // io
 const io = require("socket.io")(server);
 io.on("connection", function(socket){
-    socket.on("message", function(msg){
-        console.log("message: " + msg);
+    socket.on("user", function(user){
+        console.log("Enter user: " + user);
+        io.emit("user", user);
+    });
+    socket.on("message", function(msg, user){
+        console.log("message: " + msg + user);
         io.emit("message", msg);
+        io.emit("user", user);
     });
 });
 
