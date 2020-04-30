@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "local": "node app.js -m local"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
@@ -12,6 +13,7 @@
     "ejs": "^3.1.2",
     "express": "4.17.1",
     "morgan": "~1.10.0",
+    "passport": "^0.4.1",
     "socket.io": "2.3.0",
     "static-favicon": "~1.0.0"
   }
