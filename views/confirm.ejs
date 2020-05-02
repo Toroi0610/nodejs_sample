@@ -10,11 +10,11 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <ul>Create private chat room</ul>
-    <ul>Room Name : <%= roomname %></ul>
-    <ul>User Name : <%= username %></ul>
-    <br>
-    <form id="regist_user_name",  action="/chatroom">
-        <button>Regist</button>
+    <form method="POST" id="regist_user_name"  action="/chatroom">
+      <ul>Room Name : <%= roomname %></ul>
+      <ul>User Name : <%= username %></ul>
+      <br>
+      <button>Regist</button>
     </form>
   </body>
 </html>

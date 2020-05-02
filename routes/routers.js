@@ -44,7 +44,7 @@ router.post('/confirm', function(req, res) {
 
 
 /* GET chat room page. */
-router.post('/chatroom', function(req, res) {
+router.get('/chatroom', function(req, res) {
   console.log('Request Type:', req.method);
   console.log('Request Type:', req.body);
   res.render('confirm', { title : title,
