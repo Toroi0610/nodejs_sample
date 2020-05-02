@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+    <title><%= title %></title>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>Welcome to <%= title %></p>
+    <ul>Create private chat room</ul>
+    <form method="POST" id="regist_chatroom_id",  action="/confirm">
+      <tr>
+        <td align="right"><b> Room name : </b></td>
+        <td><input type="text" name="roomname" size="12" maxlength="20"></td>
+      </tr>
+      <br>
+      <tr>
+        <td align="right"><b> User name :  </b></td>
+        <td><input type="text" name="username" size="12" maxlength="20"></td>
+      </tr>
+      <br>
+      <button>Register</button>
+    </form>
+  </body>
+</html>

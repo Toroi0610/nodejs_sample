@@ -9,11 +9,12 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <form id="create_room" action="/create-room">
-        <button>Create room</button>
-    </form>
-    <form id="enter_room" action="/enter-room">
-      <button>Enter room</button>
+    <ul>Create private chat room</ul>
+    <ul>Room Name : <%= roomname %></ul>
+    <ul>User Name : <%= username %></ul>
+    <br>
+    <form id="regist_user_name",  action="/chatroom">
+        <button>Regist</button>
     </form>
   </body>
 </html>
