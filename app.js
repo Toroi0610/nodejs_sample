@@ -40,22 +40,40 @@ if (run_mode == "local"){
     console.log("Server: Local");
 } else {
     var http = require("http");
-    var server = http.createServer(app).listen(process.env.PORT)
-    // console.log("Server: Cloud);
+    var server = http.createServer(app).listen(process.env.PORT);
+    console.log("Server: Cloud");
 }
+
+// ユーザ管理ハッシュ
+var userHash = {};
 
 // io
 const io = require("socket.io")(server);
 io.on("connection", function(socket){
-    socket.on("user", function(user){
-        console.log("Enter user: " + user);
-        io.emit("user", user);
+    // 接続開始カスタムイベント(接続元ユーザを保存し、他ユーザへ通知)
+    socket.on("connected", function (name) {
+        var msg = "入室しました";
+        userHash[socket.id] = name;
+        io.emit("message", {username : user, message : msg});
     });
-    socket.on("message", function(msg, user){
-        console.log("message: " + msg + user);
-        io.emit("message", msg);
-        io.emit("user", user);
+
+    // メッセージ受信時イベント
+    socket.on("message", function(msg){
+        // socket.idからユーザー名を取り出す．
+        var user = userHash[socket.id];
+        console.log("[Message] :: " + user + ":" + msg);
+        io.emit("message", {username : user, message : msg});
     });
+
+    // 接続終了組み込みイベント(接続元ユーザを削除し、他ユーザへ通知)
+    socket.on("disconnect", function () {
+        if (userHash[socket.id]) {
+            var msg = "退出しました";
+            delete userHash[socket.id];
+            io.emit("message", {username : user, message : msg});
+        }
+    });
+
 });
 
 // output console

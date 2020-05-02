@@ -9,8 +9,9 @@
   <body>
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
-    <form method="GET" id="create_room" action="/users">
-        <button>Create room</button>
+    <ul>Create private chat room</ul>
+    <form method="POST" id="regist_user_name",  action="/chatroom">
+      <input id="input_username" autocomplete="off" /><button>Regist</button>
     </form>
   </body>
 </html>
