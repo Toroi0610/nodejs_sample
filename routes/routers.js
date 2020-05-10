@@ -44,12 +44,12 @@ router.post('/confirm', function(req, res) {
 
 
 /* GET chat room page. */
-router.get('/chatroom', function(req, res) {
+router.post('/chatroom', function(req, res) {
   console.log('Request Type:', req.method);
   console.log('Request Type:', req.body);
-  res.render('confirm', { title : title,
-                          roomname : req.body.roomname,
-                          username : req.body.username
+  res.render('chatroom', { title : title,
+                           roomname : req.body.roomname,
+                           username : req.body.username
                         }
             );
 });
