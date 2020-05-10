@@ -11,8 +11,11 @@
     <p>Welcome to <%= title %></p>
     <ul>Create private chat room</ul>
     <form method="POST" id="regist_user_name"  action="/chatroom">
-      <ul>Room Name : <%= roomname %></ul>
-      <ul>User Name : <%= username %></ul>
+      <ul>
+        <li>Room Name : <%= roomname %><input type='hidden' name='room' value='<%= roomname %>'/></li>
+        <li>User Name : <%= username %><input type='hidden' name='user' value='<%= username %>'/></li>
+      </ul>
+
       <br>
       <button>Regist</button>
     </form>

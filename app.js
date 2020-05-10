@@ -35,8 +35,11 @@ var run_mode = process.argv[3]
 if (run_mode == "local"){
     var http = require("http").Server(app);
     const PORT = process.env.PORT || 7000;
-    var server = http.listen(PORT);
-    console.log("Server: Local");
+    const hostname = '0.0.0.0';
+    // var server = http.listen(PORT, hostname);
+    http.listen(PORT, hostname, () => {
+      console.log(`Server running at http://${hostname}:${PORT}/`);
+    });
 } else {
     var http = require("http");
     var server = http.createServer(app).listen(process.env.PORT);

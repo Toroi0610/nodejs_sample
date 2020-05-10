@@ -48,8 +48,8 @@ router.post('/chatroom', function(req, res) {
   console.log('Request Type:', req.method);
   console.log('Request Type:', req.body);
   res.render('chatroom', { title : title,
-                           roomname : req.body.roomname,
-                           username : req.body.username
+                           roomname : req.body.room,
+                           username : req.body.user
                         }
             );
 });

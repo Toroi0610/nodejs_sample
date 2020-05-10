@@ -32,6 +32,7 @@
 
       // サーバーからメッセージを受け取る．
       socketio.on("message", function(data){
+        console.log(data)
         $("#messages").append($("<li>").text("[" + data.username + "] : " + data.message));
       });
 
